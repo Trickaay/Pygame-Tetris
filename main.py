@@ -11,6 +11,9 @@ clock = pygame.time.Clock()
 
 game = Game()
 
+GAME_UPDATE = pygame.USEREVENT
+pygame.time.set_timer(GAME_UPDATE, 400)
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -24,10 +27,12 @@ while True:
             if event.key == pygame.K_DOWN:
                 game.move_down()
             if event.key == pygame.K_UP:
-                game.rotate_block()
+                game.rotate()    
+        if event.type == GAME_UPDATE:
+                game.move_down()
 
     screen.fill(dark_blue)
-    game.draw(screen)    
+    game.draw(screen)
         
     pygame.display.update()
     clock.tick(60)
