@@ -8,11 +8,11 @@ class Game:
         self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
+        self.game_over = False
  
     def get_random_block(self):
         if len(self.blocks) == 0:
-                    self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
-
+            self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
         block = random.choice(self.blocks)
         self.blocks.remove(block)
         return block
@@ -40,6 +40,15 @@ class Game:
         self.current_block = self.next_block
         self.next_block = self.get_random_block()
         self.grid.clear_full_rows()
+        if self.block_fits() == False:
+            self.game_over = True
+            
+    def reset(self):
+        self.grid.reset()
+        self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
+        self.current_block = self.get_random_block()
+        self.next_block = self.get_random_block()
+        
         
     def block_fits(self):
         tiles = self.current_block.get_cell_positions()
@@ -56,8 +65,8 @@ class Game:
     def block_inside(self):
         tiles = self.current_block.get_cell_positions()
         for tile in tiles:
-            if not self.grid.is_inside(tile.row, tile.column) or self.grid.grid[tile.row][tile.column] != 0:
-                return False
+            if self.grid.is_inside(tile.row, tile.column) == False:
+                    return False
         return True    
         
     def draw(self, screen):

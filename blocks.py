@@ -7,7 +7,7 @@ class LBlock(Block):
         self.cells = {
             0: [Position(0, 2), Position(1, 0), Position(1, 1), Position(1, 2)],
             1: [Position(0, 1), Position(1, 1), Position(2, 1), Position(2, 2)],
-            2: [Position(0, 2), Position(1, 0), Position(1, 1), Position(2, 0)],
+            2: [Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)],
             3: [Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)],
         }
         self.move(0, 3)
@@ -36,10 +36,7 @@ class OBlock(Block):
     def __init__(self):
         super().__init__(id = 4)
         self.cells = {
-            0: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)],
-            1: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)],
-            2: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)],
-            3: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)],
+            0: [Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)]
         }
         self.move(0, 4)
 class SBlock(Block):
@@ -52,7 +49,6 @@ class SBlock(Block):
             3: [Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)],
         }
         self.move(0, 3)
-
 class TBlock(Block):
     def __init__(self):
         super().__init__(id = 6)
